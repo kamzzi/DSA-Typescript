@@ -28,7 +28,7 @@
 
 ## About The Project
 
-[![DSA LOGO][DSA]](./public/dsa.png)
+![Data Structures and Algorithms](./public/dsa.png)
 
 A repository containing topics about Data Structures and Algorithms. Each structure and algorithm is described in a theoretical way with explanations as well as in a practical way. In addition, each structure is subject to testing.
 
