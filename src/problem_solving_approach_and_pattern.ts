@@ -144,3 +144,132 @@ const binarySearch = (numbers: number[], search: number) => {
 };
 
 binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+
+//////////////////////// GENERAL CHALLENGES FOR ALL SECTIONS ////////////////////////
+
+// 1.
+
+const sameFrequency = (num1: number, num2: number) => {
+  const num1Frequency: Record<number, number> = {};
+  const num2Frequency: Record<number, number> = {};
+
+  while (num1) {
+    let lastDigit = Math.floor(num1 % 10);
+    num1Frequency[lastDigit]
+      ? num1Frequency[lastDigit]++
+      : (num1Frequency[lastDigit] = 1);
+    num1 = Math.floor(num1 / 10);
+  }
+
+  while (num2) {
+    let lastDigit = Math.floor(num2 % 10);
+    num2Frequency[lastDigit]
+      ? num2Frequency[lastDigit]++
+      : (num2Frequency[lastDigit] = 1);
+    num2 = Math.floor(num2 / 10);
+  }
+
+  for (const key in num1Frequency) {
+    if (num1Frequency[key] !== num2Frequency[key]) return false;
+    return true;
+  }
+};
+
+sameFrequency(182, 281); // true
+sameFrequency(34, 14); // false
+sameFrequency(3589578, 5879385); // true
+sameFrequency(22, 222); // false
+
+// 2.
+
+const areThereDuplicates = <T extends number | string>(...inputs: T[]) => {
+  const obj: Record<any, any> = {};
+
+  for (let i = 0; i < inputs.length; i++) {
+    const record = inputs[i];
+
+    obj[record] ? obj[record]++ : (obj[record] = 1);
+  }
+
+  for (const key in obj) {
+    const value = obj[key];
+    if (value > 1) return true;
+  }
+
+  return false;
+};
+
+areThereDuplicates(1, 2, 3); // false
+areThereDuplicates(1, 2, 2); // true
+areThereDuplicates("a", "b", "c", "a"); // true
+
+// 3.
+
+const averagePair = (numbers: number[], average: number) => {
+  if (!numbers.length) return false;
+
+  let left = 0;
+  let right = numbers.length - 1;
+
+  while (left <= right) {
+    const avg = (numbers[left] + numbers[right]) / 2;
+
+    if (avg > average) {
+      right--;
+    }
+
+    if (avg < average) {
+      left++;
+    }
+
+    if (avg === average) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+averagePair([1, 2, 3], 2.5); // true
+averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8); // true
+averagePair([-1, 0, 3, 4, 5, 6], 4.1); // false
+averagePair([], 4); // false
+
+// 4.
+
+const isSubsequence = (str1: string, str2: string) => {
+  let str1Left = 0;
+  let str2Left = 0;
+  let sum = 0;
+  while (str1Left < str1.length && str2Left !== str2.length) {
+    const str1Char = str1[str1Left];
+    const str2Char = str2[str2Left];
+
+    if (str1Char === str2Char) {
+      sum++;
+      str1Left++;
+      str2Left++;
+    } else {
+      str2Left++;
+    }
+  }
+
+  return sum === str1.length;
+};
+
+isSubsequence("hello", "hello world"); // true
+isSubsequence("sing", "sting"); // true
+isSubsequence("abc", "abracadabra"); // true
+isSubsequence("abc", "acb"); // false (order matters)
+
+// 5.
+
+const maxSubarraySum = (numbers: number[], k:number) => {
+  
+};
+
+maxSubarraySum([100, 200, 300, 400], 2); // 700
+maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4); // 39
+maxSubarraySum([-3, 4, 0, -2, 6, -1], 2); // 5
+maxSubarraySum([3, -2, 7, -4, 1, -1, 4, -2, 1], 2); // 5
+maxSubarraySum([2, 3], 3); // null
