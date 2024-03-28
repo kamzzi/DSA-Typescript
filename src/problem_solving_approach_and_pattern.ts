@@ -124,12 +124,9 @@ maxSubsequenceArray([4, 2, 1, 6], 1);
 const binarySearch = (numbers: number[], search: number) => {
   let left = 0;
   let right = numbers.length - 1;
-  let steps = 0;
   while (left <= right) {
     let middle = Math.floor((left + right) / 2);
-    steps++;
     if (numbers[middle] === search) {
-      console.log({ steps });
       return middle;
     }
     if (numbers[middle] > search) {
@@ -264,8 +261,23 @@ isSubsequence("abc", "acb"); // false (order matters)
 
 // 5.
 
-const maxSubarraySum = (numbers: number[], k:number) => {
-  
+const maxSubarraySum = (numbers: number[], k: number) => {
+  if (numbers.length < k) return null;
+
+  let windowSum = 0;
+  let maxSum = -Infinity;
+  let start = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    windowSum += numbers[i];
+
+    if (k - (i - start) - 1 === 0) {
+      maxSum = Math.max(maxSum, windowSum);
+      windowSum -= numbers[start];
+      start++;
+    }
+  }
+  return maxSum;
 };
 
 maxSubarraySum([100, 200, 300, 400], 2); // 700
@@ -273,3 +285,59 @@ maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4); // 39
 maxSubarraySum([-3, 4, 0, -2, 6, -1], 2); // 5
 maxSubarraySum([3, -2, 7, -4, 1, -1, 4, -2, 1], 2); // 5
 maxSubarraySum([2, 3], 3); // null
+
+// 6.
+
+const minSubArrayLen = (numbers: number[], k: number) => {
+  let windowSum = 0;
+  let min = Infinity;
+  let start = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    windowSum += numbers[i];
+    while (windowSum >= k) {
+      min = Math.min(min, i - start + 1);
+      windowSum -= numbers[start];
+      start++;
+    }
+  }
+
+  return min === Infinity ? 0 : min;
+};
+
+minSubArrayLen([2, 3, 1, 2, 4, 3], 7); // 2 -> because [4,3] is the smallest subarray
+minSubArrayLen([2, 1, 6, 5, 4], 9); // 2 -> because [5,4] is the smallest subarray
+minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52); // 1 -> because [62] is greater than 52
+minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 39); // 3
+minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55); // 5
+minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11); // 2
+minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95); // 0
+
+// 7.
+
+const findLongestSubstring = (str: string) => {
+  let dict: string[] = [];
+  let longestWindow = 0;
+  let longest = -Infinity;
+  for (let i = 0; i < str.length; i++) {
+    if (dict.includes(str[i])) {
+      console.log(dict);
+      longest = Math.max(longest, longestWindow);
+      longestWindow = 0;
+      dict = [];
+    }
+    dict.push(str[i]);
+    longestWindow++;
+  }
+
+  console.log(longest);
+  return longest === -Infinity ? 0 : longest;
+};
+
+findLongestSubstring(""); // 0
+findLongestSubstring("rithmschool"); // 7
+findLongestSubstring("thisisawesome"); // 6
+findLongestSubstring("thecatinthehat"); // 7
+findLongestSubstring("bbbbbb"); // 1
+findLongestSubstring("longestsubstring"); // 8
+findLongestSubstring("thisishowwedoit"); // 6
