@@ -316,22 +316,20 @@ minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95); // 0
 // 7.
 
 const findLongestSubstring = (str: string) => {
-  let dict: string[] = [];
-  let longestWindow = 0;
-  let longest = -Infinity;
-  for (let i = 0; i < str.length; i++) {
-    if (dict.includes(str[i])) {
-      console.log(dict);
-      longest = Math.max(longest, longestWindow);
-      longestWindow = 0;
-      dict = [];
-    }
-    dict.push(str[i]);
-    longestWindow++;
-  }
+  let longest = 0;
+  let seen: any = {};
+  let start = 0;
 
-  console.log(longest);
-  return longest === -Infinity ? 0 : longest;
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (seen[char]) {
+      start = Math.max(start, seen[char]);
+    }
+    longest = Math.max(longest, i - start + 1);
+    // store the index of the next char so as to not double count
+    seen[char] = i + 1;
+  }
+  return longest;
 };
 
 findLongestSubstring(""); // 0
