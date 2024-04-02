@@ -25,4 +25,39 @@ export class SinglyLinkedList<T> {
 
     return newNode;
   }
+
+  pop() {
+    if (!this.head) return null;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      let current = this.head;
+      let prev = current;
+
+      while (current?.next) {
+        prev = current;
+        current = current.next;
+      }
+
+      this.tail = prev;
+      this.tail!.next = null;
+    }
+
+    this.length--;
+    return true;
+  }
 }
+
+const sll = new SinglyLinkedList();
+
+sll.push(3);
+sll.push(5);
+sll.push(7);
+
+sll.pop();
+sll.pop();
+sll.pop();
+
+console.log(sll);

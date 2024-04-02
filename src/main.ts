@@ -2,3 +2,4 @@ import "./big_o_notation";
 import "./problem_solving_approach_and_pattern";
 import "./recursion";
 import "./searching_and_sorting";
+import "./data_structures/singly_linked_list/singly_linked_list";
