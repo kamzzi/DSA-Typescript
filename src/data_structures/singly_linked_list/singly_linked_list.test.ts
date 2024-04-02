@@ -120,4 +120,24 @@ describe("Singly Linked List testing", () => {
     expect(sll.head!.value).toBe(6);
     expect(sll.length).toBe(2);
   });
+  test("Unshift method without head", () => {
+    const sll = new SinglyLinkedList();
+    sll.unshift(5);
+    expect(sll.head!.value).toBe(5);
+    expect(sll.tail!.value).toBe(5);
+    expect(sll.length).toBe(1);
+  });
+
+  test("Unshift method with head", () => {
+    const sll = new SinglyLinkedList();
+    sll.push(5);
+    expect(sll.head!.value).toBe(5);
+    expect(sll.tail!.value).toBe(5);
+    expect(sll.length).toBe(1);
+    sll.push(6);
+    sll.unshift(350);
+    expect(sll.head!.value).toBe(350);
+    expect(sll.head!.next!.value).toBe(5);
+    expect(sll.length).toBe(3);
+  });
 });

@@ -64,6 +64,22 @@ export class SinglyLinkedList<T> {
 
     return this.head;
   }
+
+  unshift(value: T) {
+    const newNode = new SinglyLinkedListNode(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      const currentHead = this.head;
+      this.head = newNode;
+      this.head!.next = currentHead;
+    }
+
+    this.length++;
+    return newNode;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -74,5 +90,6 @@ sll.push(7);
 
 sll.pop();
 sll.shift();
+sll.unshift(350);
 
 console.log(sll);
