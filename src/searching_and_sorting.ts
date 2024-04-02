@@ -158,7 +158,7 @@ const merge = (arrA: number[], arrB: number[]) => {
   return result;
 };
 
-const mergeSort = (numbers: number[]):any => {
+const mergeSort = (numbers: number[]): any => {
   if (numbers.length <= 1) return numbers;
 
   let mid = Math.floor(numbers.length / 2);
@@ -168,4 +168,4 @@ const mergeSort = (numbers: number[]):any => {
   return merge(left, right);
 };
 
-console.log(mergeSort([10, 24, 76, 73, 72, 1, 9]));
+mergeSort([10, 24, 76, 73, 72, 1, 9]);
