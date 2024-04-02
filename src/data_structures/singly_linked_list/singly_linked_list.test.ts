@@ -88,4 +88,36 @@ describe("Singly Linked List testing", () => {
     expect(sll.tail!.value).toBe(6);
     expect(sll.length).toBe(2);
   });
+  test("Shift method without head", () => {
+    const sll = new SinglyLinkedList();
+
+    expect(sll.shift()).toBeNull();
+  });
+  test("Shift method with 1 item", () => {
+    const sll = new SinglyLinkedList();
+    sll.push(5);
+    expect(sll.head!.value).toBe(5);
+    expect(sll.tail!.value).toBe(5);
+    expect(sll.length).toBe(1);
+
+    sll.shift();
+
+    expect(sll.head).toBeNull();
+    expect(sll.tail).toBeNull();
+    expect(sll.length).toBe(0);
+  });
+  test("Shift method with more than 1 item", () => {
+    const sll = new SinglyLinkedList();
+    sll.push(5);
+    expect(sll.head!.value).toBe(5);
+    expect(sll.tail!.value).toBe(5);
+    expect(sll.length).toBe(1);
+    sll.push(6);
+    sll.push(7);
+
+    sll.shift();
+
+    expect(sll.head!.value).toBe(6);
+    expect(sll.length).toBe(2);
+  });
 });

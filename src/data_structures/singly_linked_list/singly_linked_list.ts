@@ -48,6 +48,22 @@ export class SinglyLinkedList<T> {
     this.length--;
     return true;
   }
+
+  shift() {
+    if (!this.head) return null;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const newHead = this.head!.next;
+      this.head = newHead;
+    }
+
+    this.length--;
+
+    return this.head;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -57,7 +73,6 @@ sll.push(5);
 sll.push(7);
 
 sll.pop();
-sll.pop();
-sll.pop();
+sll.shift();
 
 console.log(sll);
