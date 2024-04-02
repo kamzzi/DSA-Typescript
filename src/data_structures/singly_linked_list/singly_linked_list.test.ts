@@ -140,4 +140,21 @@ describe("Singly Linked List testing", () => {
     expect(sll.head!.next!.value).toBe(5);
     expect(sll.length).toBe(3);
   });
+  test("Get method with invalid index", () => {
+    const sll = new SinglyLinkedList();
+
+    expect(sll.get(-1)).toBeNull();
+    expect(sll.get(11)).toBeNull();
+  });
+
+  test("Get method with valid index", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.push(3);
+    sll.push(4);
+
+    const finded = sll.get(1);
+
+    expect(finded!.value).toBe(4);
+  });
 });

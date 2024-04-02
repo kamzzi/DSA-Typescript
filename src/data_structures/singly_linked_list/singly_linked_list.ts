@@ -80,6 +80,22 @@ export class SinglyLinkedList<T> {
     this.length++;
     return newNode;
   }
+
+  get(index: number) {
+    if (index < 0 || index > this.length) return null;
+
+    let tempIndex = 0;
+    let current = this.head;
+
+    if (!current) return null;
+
+    while (tempIndex !== index) {
+      tempIndex++;
+      current = current!.next;
+    }
+
+    return current;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -91,5 +107,6 @@ sll.push(7);
 sll.pop();
 sll.shift();
 sll.unshift(350);
+sll.unshift(650);
 
 console.log(sll);
