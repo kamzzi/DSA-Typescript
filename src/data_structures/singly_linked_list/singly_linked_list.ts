@@ -96,6 +96,18 @@ export class SinglyLinkedList<T> {
 
     return current;
   }
+
+  set(value: T, index: number) {
+    if (index < 0 || index > this.length) return false;
+
+    const item = this.get(index);
+
+    if (!item) return false;
+
+    item.value = value;
+
+    return true;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -108,5 +120,6 @@ sll.pop();
 sll.shift();
 sll.unshift(350);
 sll.unshift(650);
+sll.set(31, 0);
 
 console.log(sll);

@@ -157,4 +157,23 @@ describe("Singly Linked List testing", () => {
 
     expect(finded!.value).toBe(4);
   });
+  test("Set method with invalid index", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.push(35);
+
+    expect(sll.set(550, -1)).toBeFalsy();
+    expect(sll.set(550, 11)).toBeFalsy();
+  });
+
+  test("Set method with valid index", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.push(35);
+    sll.push(500);
+
+    sll.set(359, 0);
+
+    expect(sll.get(0)!.value).toBe(359);
+  });
 });
