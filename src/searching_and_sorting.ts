@@ -78,7 +78,29 @@ const bubbleSort = (numbers: number[]) => {
     }
   }
 
-  console.log(numbers);
+  return numbers;
 };
 
 bubbleSort([32, 11, 4, 5, 68, 10]);
+
+/*
+  Type : Selection Sort.
+*/
+
+const selectionSort = (numbers: number[]) => {
+  for (let i = 0; i < numbers.length; i++) {
+    let smallest = i;
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[j] < numbers[smallest]) {
+        smallest = j;
+      }
+    }
+
+    if (smallest !== i) {
+      [numbers[i], numbers[smallest]] = [numbers[smallest], numbers[i]];
+    }
+  }
+  return numbers;
+};
+
+selectionSort([32, 11, 4, 5, 68, 10]);
