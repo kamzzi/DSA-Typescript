@@ -108,6 +108,24 @@ export class SinglyLinkedList<T> {
 
     return true;
   }
+
+  insert(value: T, index: number) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+
+    const finded = this.get(index - 1);
+
+    if (!finded) return null;
+
+    const newNode = new SinglyLinkedListNode(value);
+
+    newNode.next = finded.next;
+    finded.next = newNode;
+    this.length++;
+    return newNode;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -116,10 +134,6 @@ sll.push(3);
 sll.push(5);
 sll.push(7);
 
-sll.pop();
-sll.shift();
-sll.unshift(350);
-sll.unshift(650);
-sll.set(31, 0);
+sll.insert(350, 1);
 
 console.log(sll);

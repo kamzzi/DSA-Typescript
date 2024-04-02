@@ -176,4 +176,41 @@ describe("Singly Linked List testing", () => {
 
     expect(sll.get(0)!.value).toBe(359);
   });
+
+  test("Insert method with invalid index", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.insert(35, 0);
+
+    expect(sll.set(550, -1)).toBeFalsy();
+    expect(sll.set(550, 11)).toBeFalsy();
+  });
+
+  test("Insert method with valid index and without head", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.insert(35, 0);
+
+    expect(sll.head!.value).toBe(35);
+    expect(sll.tail!.value).toBe(35);
+    expect(sll.length).toBe(1);
+  });
+
+  test("Insert method with valid index and items", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.push(35);
+
+    expect(sll.head!.value).toBe(35);
+    expect(sll.tail!.value).toBe(35);
+    expect(sll.length).toBe(1);
+
+    sll.push(355);
+    sll.push(100);
+
+    sll.insert(250, 1);
+
+    expect(sll.get(1)!.value).toBe(250);
+    expect(sll.get(1)!.next!.value).toBe(355);
+  });
 });
