@@ -104,3 +104,68 @@ const selectionSort = (numbers: number[]) => {
 };
 
 selectionSort([32, 11, 4, 5, 68, 10]);
+
+/*
+  Type : Insertion Sort.
+*/
+
+const insertionSort = (numbers: number[]) => {
+  for (let i = 1; i < numbers.length; i++) {
+    const current = numbers[i];
+
+    for (var j = i - 1; j >= 0 && numbers[j] > current; j--) {
+      numbers[j + 1] = numbers[j];
+    }
+
+    numbers[j + 1] = current;
+  }
+
+  return numbers;
+};
+
+insertionSort([32, 11, 4, 5, 68, 10]);
+
+/*
+  Type : Merge Sort.
+*/
+
+const merge = (arrA: number[], arrB: number[]) => {
+  const result: number[] = [];
+
+  let a = 0;
+  let b = 0;
+
+  while (a < arrA.length && b < arrB.length) {
+    if (arrB[b] > arrA[a]) {
+      result.push(arrA[a]);
+      a++;
+    } else {
+      result.push(arrB[b]);
+      b++;
+    }
+  }
+
+  while (a < arrA.length) {
+    result.push(arrA[a]);
+    a++;
+  }
+
+  while (b < arrB.length) {
+    result.push(arrB[b]);
+    b++;
+  }
+
+  return result;
+};
+
+const mergeSort = (numbers: number[]):any => {
+  if (numbers.length <= 1) return numbers;
+
+  let mid = Math.floor(numbers.length / 2);
+  let left = mergeSort(numbers.slice(0, mid));
+  let right = mergeSort(numbers.slice(mid));
+
+  return merge(left, right);
+};
+
+console.log(mergeSort([10, 24, 76, 73, 72, 1, 9]));
