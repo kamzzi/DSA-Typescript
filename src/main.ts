@@ -3,3 +3,4 @@ import "./problem_solving_approach_and_pattern";
 import "./recursion";
 import "./searching_and_sorting";
 import "./data_structures/singly_linked_list/singly_linked_list";
+import "./data_structures/doubly_linked_list/doubly_linked_list";
