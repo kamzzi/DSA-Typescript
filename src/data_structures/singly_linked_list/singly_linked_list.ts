@@ -161,12 +161,3 @@ export class SinglyLinkedList<T> {
     return this;
   }
 }
-
-const sll = new SinglyLinkedList();
-
-sll.push(1);
-sll.push(2);
-sll.push(3);
-sll.push(311);
-
-sll.reverse();
