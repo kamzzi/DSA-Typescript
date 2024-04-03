@@ -213,4 +213,34 @@ describe("Singly Linked List testing", () => {
     expect(sll.get(1)!.value).toBe(250);
     expect(sll.get(1)!.next!.value).toBe(355);
   });
+
+  test("Remove method with invalid index", () => {
+    const sll = new SinglyLinkedList();
+
+    expect(sll.remove(-2)).toBeFalsy();
+    expect(sll.remove(500)).toBeFalsy();
+  });
+
+  test("Remove method with valid index and without head", () => {
+    const sll = new SinglyLinkedList();
+
+    expect(sll.remove(0)).toBeNull();
+  });
+
+  test("Remove method with valid index and items", () => {
+    const sll = new SinglyLinkedList();
+
+    sll.push(35);
+
+    expect(sll.head!.value).toBe(35);
+    expect(sll.tail!.value).toBe(35);
+    expect(sll.length).toBe(1);
+
+    sll.push(355);
+    sll.push(100);
+
+    sll.remove(1);
+
+    expect(sll.get(1)!.value).toBe(100);
+  });
 });

@@ -126,6 +126,21 @@ export class SinglyLinkedList<T> {
     this.length++;
     return newNode;
   }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const previousElement = this.get(index - 1);
+    const removed = previousElement!.next;
+    previousElement!.next = removed!.next;
+
+    this.length--;
+
+    return removed;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -135,5 +150,7 @@ sll.push(5);
 sll.push(7);
 
 sll.insert(350, 1);
+
+sll.remove(2);
 
 console.log(sll);
