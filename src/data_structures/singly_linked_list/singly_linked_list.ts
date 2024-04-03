@@ -141,16 +141,32 @@ export class SinglyLinkedList<T> {
 
     return removed;
   }
+
+  reverse() {
+    if (this.length === 0) return null;
+
+    [this.tail, this.head] = [this.head, this.tail];
+
+    let prev = null;
+    let next = null;
+    let current = this.tail;
+
+    for (let i = 0; i < this.length; i++) {
+      next = current!.next;
+      current!.next = prev;
+      prev = current;
+      current = next;
+    }
+
+    return this;
+  }
 }
 
 const sll = new SinglyLinkedList();
 
+sll.push(1);
+sll.push(2);
 sll.push(3);
-sll.push(5);
-sll.push(7);
+sll.push(311);
 
-sll.insert(350, 1);
-
-sll.remove(2);
-
-console.log(sll);
+sll.reverse();
