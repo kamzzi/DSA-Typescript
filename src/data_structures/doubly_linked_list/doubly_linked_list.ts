@@ -159,15 +159,3 @@ export class DoublyLinkedList<T> {
     return findedNode;
   }
 }
-
-const dll = new DoublyLinkedList();
-
-dll.push(3);
-dll.push(4);
-dll.push(5);
-dll.push(6);
-dll.push(7);
-
-dll.remove(3);
-
-console.log(dll);
