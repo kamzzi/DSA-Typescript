@@ -104,6 +104,18 @@ export class DoublyLinkedList<T> {
     }
     return null;
   }
+
+  set(index: number, value: T) {
+    if (index < 0 || index >= this.length) return null;
+
+    const findedNode = this.get(index);
+
+    if (!findedNode) return null;
+
+    findedNode.value = value;
+
+    return findedNode;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -114,6 +126,6 @@ dll.push(5);
 dll.push(6);
 dll.push(7);
 
-dll.get(4);
+dll.set(0, 500);
 
 console.log(dll);
