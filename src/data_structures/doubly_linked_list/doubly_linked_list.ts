@@ -73,6 +73,37 @@ export class DoublyLinkedList<T> {
     this.length++;
     return newNode;
   }
+
+  get(index: number) {
+    if (index < 0 || index >= this.length) return null;
+
+    const middleOfLength = Math.floor(this.length / 2);
+    const isIndexHigherThanMiddle = index > middleOfLength;
+
+    if (isIndexHigherThanMiddle) {
+      let maxLength = this.length;
+      let current = this.tail;
+
+      while (maxLength !== index) {
+        current = current!.prev;
+        maxLength--;
+      }
+
+      return current;
+    }
+    if (!isIndexHigherThanMiddle) {
+      let tempIndex = 0;
+      let current = this.head;
+
+      while (tempIndex !== index) {
+        current = current!.next;
+        tempIndex++;
+      }
+
+      return current;
+    }
+    return null;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -80,7 +111,9 @@ const dll = new DoublyLinkedList();
 dll.push(3);
 dll.push(4);
 dll.push(5);
+dll.push(6);
+dll.push(7);
 
-dll.unshift("cosiek");
+dll.get(4);
 
 console.log(dll);

@@ -112,4 +112,21 @@ describe("Singly Linked List testing", () => {
     expect(dll!.head!.value).toBe(500);
     expect(dll!.head!.next!.value).toBe(10);
   });
+
+  test("Get method with invalid index", () => {
+    const dll = new DoublyLinkedList();
+    expect(dll.get(-1)).toBeNull();
+    expect(dll.get(300)).toBeNull();
+  });
+
+  test("Get method with valid index", () => {
+    const dll = new DoublyLinkedList();
+
+    dll.push(3);
+    dll.push(4);
+    dll.push(5);
+    dll.push(6);
+
+    expect(dll.get(2)!.value).toBe(5);
+  });
 });
