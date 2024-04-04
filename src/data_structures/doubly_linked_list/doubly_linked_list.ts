@@ -27,6 +27,21 @@ export class DoublyLinkedList<T> {
 
     return newNode;
   }
+
+  pop() {
+    if (!this.head) return null;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail!.prev;
+      this.tail!.next = null;
+    }
+
+    this.length--;
+    return true;
+  }
 }
 
 const dll = new DoublyLinkedList();
@@ -34,5 +49,7 @@ const dll = new DoublyLinkedList();
 dll.push(3);
 dll.push(4);
 dll.push(5);
+
+dll.pop();
 
 console.log(dll);
