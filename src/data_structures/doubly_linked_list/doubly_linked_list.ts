@@ -30,7 +30,7 @@ export class DoublyLinkedList<T> {
 
   pop() {
     if (!this.head) return null;
-
+    const removed = this.tail;
     if (this.length === 1) {
       this.head = null;
       this.tail = null;
@@ -40,7 +40,38 @@ export class DoublyLinkedList<T> {
     }
 
     this.length--;
-    return true;
+    return removed;
+  }
+
+  shift() {
+    if (!this.head) return null;
+    const removed = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head!.prev = null;
+    }
+
+    this.length--;
+    return removed;
+  }
+
+  unshift(value: T) {
+    const newNode = new DoublyLinkedListNode(value);
+    const currentHead = this.head;
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      this.head!.next = currentHead;
+      currentHead!.prev = newNode;
+    }
+
+    this.length++;
+    return newNode;
   }
 }
 
@@ -50,6 +81,6 @@ dll.push(3);
 dll.push(4);
 dll.push(5);
 
-dll.pop();
+dll.unshift("cosiek");
 
 console.log(dll);
