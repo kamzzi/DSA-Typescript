@@ -139,17 +139,35 @@ export class DoublyLinkedList<T> {
 
     return newNode;
   }
+
+  remove(index: number) {
+    if (index < 0 || index > this.length) return null;
+    if (index === 0) return this.shift();
+    if (index === this.length) return this.pop();
+
+    const findedNode = this.get(index);
+
+    if (!findedNode) return null;
+
+    const previous = findedNode!.prev;
+
+    previous!.next = findedNode!.next;
+    findedNode!.next!.prev = previous;
+
+    this.length--;
+
+    return findedNode;
+  }
 }
 
 const dll = new DoublyLinkedList();
 
-// dll.push(3);
-// dll.push(4);
-// dll.push(5);
-// dll.push(6);
-// dll.push(7);
+dll.push(3);
+dll.push(4);
+dll.push(5);
+dll.push(6);
+dll.push(7);
 
-// dll.insert(3, 1000);
-dll.insert(0, 300);
+dll.remove(3);
 
 console.log(dll);

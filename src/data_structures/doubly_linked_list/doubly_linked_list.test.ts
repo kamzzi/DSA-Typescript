@@ -174,4 +174,36 @@ describe("Singly Linked List testing", () => {
 
     expect(dll.length).toBe(4);
   });
+
+  test("Remove method with invalid index", () => {
+    const dll = new DoublyLinkedList();
+
+    expect(dll.remove(-1)).toBeNull();
+    expect(dll.remove(300)).toBeNull();
+  });
+
+  test("Remove method with valid index, and length of 1", () => {
+    const dll = new DoublyLinkedList();
+
+    dll.push(40);
+
+    dll.remove(0);
+
+    expect(dll.head).toBeNull();
+    expect(dll.tail).toBeNull();
+  });
+
+  test("Remove method with valid index, and other length", () => {
+    const dll = new DoublyLinkedList();
+
+    dll.push(40);
+    dll.push(50);
+    dll.push(60);
+
+    dll.remove(1);
+
+    expect(dll.head!.value).toBe(40);
+    expect(dll.head!.next!.value).toBe(60);
+    expect(dll.length).toBe(2);
+  });
 });
