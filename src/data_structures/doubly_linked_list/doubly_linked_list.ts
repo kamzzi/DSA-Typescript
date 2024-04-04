@@ -116,16 +116,40 @@ export class DoublyLinkedList<T> {
 
     return findedNode;
   }
+
+  insert(index: number, value: T) {
+    if (index < 0 || index > this.length) return null;
+    if (index === 0) return this.unshift(value);
+    if (index === this.length) return this.push(value);
+
+    const findedNode = this.get(index - 1);
+
+    if (!findedNode) return null;
+
+    const newNode = new DoublyLinkedListNode(value);
+
+    const previousElementOfFinded = findedNode!.prev;
+
+    previousElementOfFinded!.next = newNode;
+    newNode!.prev = previousElementOfFinded;
+    newNode!.next = findedNode;
+    findedNode!.prev = newNode;
+
+    this.length++;
+
+    return newNode;
+  }
 }
 
 const dll = new DoublyLinkedList();
 
-dll.push(3);
-dll.push(4);
-dll.push(5);
-dll.push(6);
-dll.push(7);
+// dll.push(3);
+// dll.push(4);
+// dll.push(5);
+// dll.push(6);
+// dll.push(7);
 
-dll.set(0, 500);
+// dll.insert(3, 1000);
+dll.insert(0, 300);
 
 console.log(dll);
