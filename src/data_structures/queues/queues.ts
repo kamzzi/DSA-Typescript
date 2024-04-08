@@ -40,13 +40,3 @@ class Queues<T> {
     return this;
   }
 }
-
-const queue = new Queues();
-
-queue.enqueue(5);
-queue.enqueue(10);
-queue.enqueue(15);
-
-queue.dequeue();
-
-console.log(queue);
