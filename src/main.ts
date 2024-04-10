@@ -6,4 +6,5 @@ import "./data_structures/singly_linked_list/singly_linked_list";
 import "./data_structures/doubly_linked_list/doubly_linked_list";
 import "./data_structures/stack/stack";
 import "./data_structures/queues/queues";
+import "./data_structures/tree/tree";
 import "./leetcode/roman_to_integer";
