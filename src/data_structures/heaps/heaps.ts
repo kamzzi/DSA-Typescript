@@ -74,13 +74,3 @@ export class MaxBinaryHeap {
     }
   }
 }
-
-const mbp = new MaxBinaryHeap();
-
-mbp.insert(55);
-
-mbp.insert(13);
-
-mbp.extractMax();
-
-console.log(mbp.values);

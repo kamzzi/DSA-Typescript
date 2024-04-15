@@ -8,3 +8,5 @@ import "./data_structures/stack/stack";
 import "./data_structures/queues/queues";
 import "./data_structures/tree/tree";
 import "./data_structures/heaps/heaps";
+
+import "./leetcode/remove_duplicates_from_sorted_array";
