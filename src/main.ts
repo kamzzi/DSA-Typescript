@@ -8,5 +8,6 @@ import "./data_structures/stack/stack";
 import "./data_structures/queues/queues";
 import "./data_structures/tree/tree";
 import "./data_structures/heaps/heaps";
+import "./data_structures/graphs/graphs";
 
-import "./leetcode/remove_element";
+import "./leetcode/index_of_first_occurence";
