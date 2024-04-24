@@ -10,4 +10,4 @@ import "./data_structures/tree/tree";
 import "./data_structures/heaps/heaps";
 import "./data_structures/graphs/graphs";
 
-import "./leetcode/index_of_first_occurence";
+import "./leetcode/insert_position";
